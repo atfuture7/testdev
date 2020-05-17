@@ -38,9 +38,10 @@ class PageController {
 	@RequestMapping(
 		value = "/pageurl/getFromTitle",
 		params = "title",
-		method = RequestMethod.GET )
+		method = RequestMethod.GET,
+		produces = "application/json" )
 	@ResponseBody
-	List<Page> getListViaTitle(@PathVariable("title") String title) {
+	List<Page> getListViaTitle(@RequestParam("title") String title) {
 		return repository.findByTitle(title);
 	}
 	
@@ -49,7 +50,7 @@ class PageController {
 		params = "title",
 		method = RequestMethod.GET)
 	@ResponseBody
-	List<String> getCustom(@PathVariable("title") String title) {
+	List<String> getCustom(@RequestParam("title") String title) {
 		return repository.findByNotAtt(title);
 	}
 
