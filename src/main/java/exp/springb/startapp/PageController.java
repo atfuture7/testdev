@@ -42,7 +42,7 @@ class PageController {
 		produces = "application/json" )
 	@ResponseBody
 	List<Page> getListViaTitle(@RequestParam("title") String title) {
-		return repository.findByTitle(title);
+		return repository.findByTitleLike(title);
 	}
 	
 	@RequestMapping(
