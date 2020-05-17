@@ -13,7 +13,7 @@ public interface PageRepository extends MongoRepository<Page, String>
 		, PageRepositoryCustom {
 	
 //	@RestResource(exported = true)
-//	List<Page> findByTitle( String title);
+	List<Page> findByTitle( String title);
 //	@RestResource(exported = false)
 //	List<Page> findByBrief( String str);
 
