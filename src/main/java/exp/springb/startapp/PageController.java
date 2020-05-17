@@ -24,16 +24,58 @@ class PageController {
 	}
 	
 	// Aggregate root
-	
 	@GetMapping("/pageurl")
 	List<Page> all() {
 		return repository.findAll();
 	}
-	
-	@PostMapping("/pageurl")
-	Page newPage(@RequestBody Page newPage) {
-		return repository.save(newPage);
+
+	// Add new Page
+	@RequestMapping(
+		value = "/pageurl/{id}",
+		method = RequestMethod.POST)
+	@ResponseBody
+	Page replacePage(@RequestBody nPage) {
+		return repository.save(nPage);
 	}
+	
+	// read one Page from id
+	@RequestMapping(
+		value = "/pageurl/{id}",
+		method = RequestMethod.GET)
+	@ResponseBody
+	Page getPage(@PathVariable String id) {
+		return repository.findById(id)
+				.orElseThrow( ()-> new PageNotFoundException(id));
+	}
+	
+	// update page 
+	@RequestMapping(
+		value = "/pageurl/{id}",
+		method = RequestMethod.POST)
+	@ResponseBody
+	Page replacePage(@RequestBody nPage, @PathVariable String id) {
+		return repository.findById.map(
+				page->{
+					page.setTitle(nPage.getName());
+					page.setBrief(nPage.getBrief());
+					page.setPageUrl(nPage.getPageUrl());
+					return repository.save(page);
+				}).orElseGet( ()->{
+					nPage.setId(id);
+					return repository.save(nPage);
+				});
+			
+	}
+	
+	// delete a page 
+	@RequestMapping(
+		value = "/pageurl/{id}",
+		method = RequestMethod.DELETE)
+	@ResponseBody
+	void deletePage(@Pathvariable String id) {
+			repository.deleteNyId(id);
+	}
+	
 	
 	@RequestMapping(
 		value = "/pageurl/getFromTitle",
