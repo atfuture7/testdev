@@ -14,6 +14,7 @@ import java.util.ArrayList;
 class LoadDatabase {
 	@Bean
 	CommandLineRunner initDatabase(PageRepository repository) {
+		return args->{};
 		/*
 		//create simple page
 		Page oPage = new Page("PreTitle1", "created by preload", null);
