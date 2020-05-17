@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+
 @RestController
 class PageController {
 	private final PageRepository repository;
@@ -30,11 +31,9 @@ class PageController {
 	}
 
 	// Add new Page
-	@RequestMapping(
-		value = "/pageurl/{id}",
-		method = RequestMethod.POST)
+	@PostMapping( value = "/pageurl")
 	@ResponseBody
-	Page replacePage(@RequestBody nPage) {
+	Page newPage(@RequestBody Page nPage) {
 		return repository.save(nPage);
 	}
 	
@@ -49,14 +48,12 @@ class PageController {
 	}
 	
 	// update page 
-	@RequestMapping(
-		value = "/pageurl/{id}",
-		method = RequestMethod.POST)
+	@PutMapping( value = "/pageurl/{id}")
 	@ResponseBody
-	Page replacePage(@RequestBody nPage, @PathVariable String id) {
-		return repository.findById.map(
+	Page replacePage(@RequestBody Page nPage, @PathVariable String id) {
+		return repository.findById(id).map(
 				page->{
-					page.setTitle(nPage.getName());
+					page.setTitle(nPage.getTitle());
 					page.setBrief(nPage.getBrief());
 					page.setPageUrl(nPage.getPageUrl());
 					return repository.save(page);
@@ -68,12 +65,10 @@ class PageController {
 	}
 	
 	// delete a page 
-	@RequestMapping(
-		value = "/pageurl/{id}",
-		method = RequestMethod.DELETE)
+	@DeleteMapping(	value = "/pageurl/{id}") 
 	@ResponseBody
-	void deletePage(@Pathvariable String id) {
-			repository.deleteNyId(id);
+	void deletePage(@PathVariable String id) {
+			repository.deleteById(id);
 	}
 	
 	

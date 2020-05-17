@@ -1,6 +1,7 @@
 package exp.springb.startapp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 //import org.springframework.data.repository.query.Param;
@@ -9,7 +10,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface PageRepository extends MongoRepository<Page, String>
 		, PageRepositoryCustom {
 	
-	Page save(nPage);
+	Page save(Page nPage);
+	Optional<Page> findById(String id);
 	List<Page> findByTitle( String title);
 	void deleteById( String title);
 	
