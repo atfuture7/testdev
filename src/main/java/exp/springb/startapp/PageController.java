@@ -82,14 +82,24 @@ class PageController {
 		return repository.findByTitleLike(title);
 	}
 	
-	@RequestMapping(
-		value = "/pageurl/getTestStr",
-		params = "title",
-		method = RequestMethod.GET)
+	// Add/remove item in list is what the custom interface for
+	// Append Url 
+	@GetMapping(
+		value = "/pageurl/appendUrl/{id}",
+		params = "sUrl")
 	@ResponseBody
-	List<String> getCustom(@RequestParam("title") String title) {
-		return repository.findByNotAtt(title);
+	Optional<Page> appendUrl(PathVariable("id") String id, 
+						@RequestParam("sUrl") String sUrl) {
+		return repository.appendUrl(id, sUrl);
 	}
 
-		
+	// Remove Url
+	@GetMapping(
+		value = "/pageurl/removeUrl/{id}",
+		params = "idx")
+	@ResponseBody
+	Optional<Page> appendUrl(PathVariable("id") String id, 
+						@RequestParam("idx") int idx) {
+		return repository.removeUrl( id, idx);
+	}
 }

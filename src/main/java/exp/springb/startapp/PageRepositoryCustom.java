@@ -1,9 +1,9 @@
 package exp.springb.startapp;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface PageRepositoryCustom {
-	List<String> findByNotAtt(String type);
-
+	Page appendUrl(String id, String sUrl);
+	Oprional<Page> removeUrl(String id, int idx);
 }
 

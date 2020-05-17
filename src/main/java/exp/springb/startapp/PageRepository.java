@@ -19,6 +19,7 @@ public interface PageRepository extends MongoRepository<Page, String>
 	List<Page> findByTitleLike(String name);
 
 	//custom method
-	List<String> findByNotAtt(  String title);
+	Optional<Page> appendUrl(String id, String sUrl);
+	Oprional<Page> removeUrl(String id, int idx);
 }
 
