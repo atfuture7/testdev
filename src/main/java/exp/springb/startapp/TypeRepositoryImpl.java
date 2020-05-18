@@ -14,7 +14,7 @@ public class TypeRepositoryImpl implements PageRepositoryCustom {
 	
 	// append Page
 	@Override
-	pubblic Type appendPage(String id, String pid) {
+	public Type appendPage(String id, String pid) {
 		// mark out first for easy debugging 
 		return null;
 		/*
