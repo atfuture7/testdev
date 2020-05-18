@@ -19,7 +19,7 @@ public interface PageRepository extends MongoRepository<Page, String>
 	List<Page> findByTitleLike(String name);
 
 	//custom method
-	Optional<Page> appendUrl(String id, String sUrl);
-	Oprional<Page> removeUrl(String id, int idx);
+	Page appendUrl(String id, String sUrl);
+	Page removeUrl(String id, int idx);
 }
 

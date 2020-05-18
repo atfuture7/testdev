@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class BookmkRepositoryImpl implements PageRepositoryCustom {
+public class BookmkRepositoryImpl implements BookmkRepositoryCustom {
 
 	@Autowired	
 	private BookmkRepository repository;
@@ -14,7 +14,7 @@ public class BookmkRepositoryImpl implements PageRepositoryCustom {
 	
 	// append Page
 	@Override
-	pubblic Bookmk appendPage(String id, String pid) {
+	public Bookmk appendPage(String id, String pid) {
 		// mark out first for easy debugging 
 		return null;
 		/*

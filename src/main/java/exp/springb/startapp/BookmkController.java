@@ -86,8 +86,8 @@ class BookmkController {
 		params = "pid")
 	@ResponseBody
 	Bookmk appendPage(@PathVariable("id") String id, 
-						@RequestParam("pid") String pid) {
-		return repository.appendPage(id, sUrl);
+				@RequestParam("pid") String pid) {
+		return repository.appendPage(id, pid);
 	}
 
 	// Remove page

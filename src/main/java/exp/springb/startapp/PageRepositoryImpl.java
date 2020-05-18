@@ -14,9 +14,8 @@ public class PageRepositoryImpl implements PageRepositoryCustom {
 	}
 
 	@Override
-	public Oprional<Page> appendUrl(String id, String sUrl) {
-		Oprional<Page> op = repository.findById(pid)
-						.orElseThrow( ()-> new PageNotFoundException(id));
+	public Page appendUrl(String id, String sUrl) {
+		Optional<Page> op = repository.findById(id);
 		Page oPage = op.get();
 		List<String> lst = oPage.getPageUrl();
 		if (lst == null) {
@@ -28,13 +27,13 @@ public class PageRepositoryImpl implements PageRepositoryCustom {
 		return oPage;
 	}
 	
-	public Oprional<Page> removeUrl(String id, int idx) {
-		Oprional<Page> op = repository.findById(pid)
-						.orElseThrow( ()-> new PageNotFoundException(id));
+	public Page removeUrl(String id, int idx) {
+		Optional<Page> op = repository.findById(id);
 		Page oPage = op.get();
 		List<String> lst = oPage.getPageUrl();
-		if (lst != null) {
-			lst  = new ArrayList<String>();
+		if ((lst != null) && (idx >=0) 
+			&& !lst.isEmpty()
+			&& (lst.size() >= (idx-1)))  {
 			lst.remove(idx);		
 			oPage.setPageUrl(lst);
 			repository.save(oPage);
