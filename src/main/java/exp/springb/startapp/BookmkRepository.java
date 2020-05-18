@@ -10,11 +10,11 @@ public interface BookmkRepository extends MongoRepository<Bookmk, String>
 	
 	Bookmk save(Bookmk nBookmk);
 	Optional<Bookmk> findById(String id);
-	List<Bookmk> findByBooknark( String Bookmk);
+	List<Bookmk> findByBookmark( String Bookmk);
 	void deleteById( String id);
 	
 	
-	List<Bookmk> findByBookmkLike(String name);
+	List<Bookmk> findByBookmarkLike(String name);
 
 	//custom method
 	Bookmk appendPage(String id, String pid);

@@ -76,7 +76,7 @@ class BookmkController {
 		produces = "application/json" )
 	@ResponseBody
 	List<Bookmk> getListbyBk(@RequestParam("Bookmk") String bk) {
-		return repository.findByBookmkLike(bk);
+		return repository.findByBookmarkLike(bk);
 	}
 	
 	// Add/remove item in list is what the custom interface for

@@ -3,16 +3,13 @@ package exp.springb.startapp;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PageRepositoryImpl implements PageRepositoryCustom {
 	
-	private final PageRepository repository;
+	@Autowired
+	private PageRepository repository;
 	
-	public PageRepositoryImpl( PageRepository repository) {
-		this.repository = repository;
-	}
-
 	@Override
 	public Page appendUrl(String id, String sUrl) {
 		Optional<Page> op = repository.findById(id);
