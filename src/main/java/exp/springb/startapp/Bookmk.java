@@ -5,17 +5,17 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 
 @Data
-public class Type {
+public class Bookmk {
 	
 	@Id private String id;
 	
-	private String type;
+	private String bookmark;
 	private String description;
 	private List<Page> lstPage;
 	
-	public Type() {}
-	public Type( String str1, String str2, List<Page> lst) {
-		this.type=str1;
+	public Bookmk() {}
+	public Bookmk( String str1, String str2, List<Page> lst) {
+		this.bookmark=str1;
 		this.description=str2;
 		this.lstPage=lst;
 	}

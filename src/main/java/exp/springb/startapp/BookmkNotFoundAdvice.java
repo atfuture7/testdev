@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice 
-class TypeNotFoundAdvice {
+class BookmkNotFoundAdvice {
 	
 	@ResponseBody
-	@ExceptionHandler( TypeNotFoundException.class)
+	@ExceptionHandler( BookmkNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String typeNotFoundHandler(TypeNotFoundException ex) {
+	String bookmkNotFoundHandler(BookmkNotFoundException ex) {
 		return ex.getMessage();
 	}
 }

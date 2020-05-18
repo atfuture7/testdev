@@ -17,95 +17,95 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @RestController
-class TypeController {
-	private final TypeRepository repository;
+class BookmkController {
+	private final BookmkRepository repository;
 	
-	TypeController(TypeRepository repository) {
+	BookmkController(BookmkRepository repository) {
 		this.repository = repository;
 	}
 	
 	// Aggregate root
-	@GetMapping("/type")
-	List<Type> all() {
+	@GetMapping("/bookmk")
+	List<Bookmk> all() {
 		return repository.findAll();
 	}
 
-	// Add new Type
-	@PostMapping( value = "/type")
+	// Add new Bookmk
+	@PostMapping( value = "/bookmk")
 	@ResponseBody
-	Type newType(@RequestBody Type nType) {
-		return repository.save(nType);
+	Bookmk newBookmk(@RequestBody Bookmk nBookmk) {
+		return repository.save(nBookmk);
 	}
 	
-	// read one Type from id
-	@GetMapping(value = "/type/{id}")
+	// read one Bookmk from id
+	@GetMapping(value = "/bookmk/{id}")
 	@ResponseBody
-	Type getType(@PathVariable String id) {
+	Bookmk getBookmk(@PathVariable String id) {
 		return repository.findById(id)
-				.orElseThrow( ()-> new TypeNotFoundException(id));
+				.orElseThrow( ()-> new BookmkNotFoundException(id));
 	}
 	
-	// update Type 
-	@PutMapping( value = "/type/{id}")
+	// update Bookmk 
+	@PutMapping( value = "/bookmk/{id}")
 	@ResponseBody
-	Type replaceType(@RequestBody Type oType, @PathVariable String id) {
+	Bookmk replaceBookmk(@RequestBody Bookmk oBookmk, @PathVariable String id) {
 		return repository.findById(id).map(
-				type->{
-					type.setType(oType.getType());
-					type.setDescription(oType.getDescription());
-					type.setLstPage(oType.getLstPage());
-					return repository.save(Type);
+				bookmk->{
+					bookmk.setBookmark(oBookmk.getBookmark());
+					bookmk.setDescription(oBookmk.getDescription());
+					bookmk.setLstPage(oBookmk.getLstPage());
+					return repository.save(bookmk);
 				}).orElseGet( ()->{
-					nType.setId(id);
-					return repository.save(nType);
+					oBookmk.setId(id);
+					return repository.save(oBookmk);
 				});
 			
 	}
 	
-	// delete a Type 
-	@DeleteMapping(	value = "/type/{id}") 
+	// delete a Bookmk 
+	@DeleteMapping(	value = "/bookmk/{id}") 
 	@ResponseBody
-	void deleteType(@PathVariable String id) {
+	void deleteBookmk(@PathVariable String id) {
 			repository.deleteById(id);
 	}
 	
 	
 	@GetMapping(
-		value = "/type/getFromType",
-		params = "type",
+		value = "/bookmk/getFromBookmk",
+		params = "bk",
 		produces = "application/json" )
 	@ResponseBody
-	List<Type> getListViaTitle(@RequestParam("type") String type) {
-		return repository.findByTypeLike(type);
+	List<Bookmk> getListbyBk(@RequestParam("Bookmk") String bk) {
+		return repository.findByBookmkLike(bk);
 	}
 	
 	// Add/remove item in list is what the custom interface for
 	// Append Url 
 	@GetMapping(
-		value = "/type/append/{id}",
+		value = "/bookmk/append/{id}",
 		params = "pid")
 	@ResponseBody
-	Type appendPage(@PathVariable("id") String id, 
+	Bookmk appendPage(@PathVariable("id") String id, 
 						@RequestParam("pid") String pid) {
 		return repository.appendPage(id, sUrl);
 	}
 
 	// Remove page
 	@GetMapping(
-		value = "/type/removePage/{id}",
+		value = "/bookmk/removePage/{id}",
 		params = "idx")
 	@ResponseBody
-	Type appendUrlById(@PathVariable("id") String id, 
+	Bookmk appendUrlById(@PathVariable("id") String id, 
 						@RequestParam("idx") int idx) {
 		return repository.removePage( id, idx);
 	}
 
 	// Remove page
 	@GetMapping(
-		value = "/type/removePage/{id}",
+		value = "/bookmk/removePage/{id}",
 		params = "pid")
 	@ResponseBody
-	Type appendUrlById(@PathVariable("id") String id, 
+	Bookmk appendUrlById(@PathVariable("id") String id, 
 						@RequestParam("pid") String pid) {
 		return repository.removePage( id, pid);
 	}
