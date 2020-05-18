@@ -47,14 +47,18 @@ public class BookmkRepositoryImpl implements BookmkRepositoryCustom {
 		Bookmk oBookmk = op.get();
 		List<Page> lst = oBookmk.getLstPage();
 		
+		System.out.println("start-----");
 		String itrId = "";
 		for (Page oPage : lst) {
+			System.out.println("in loop-----");
 			itrId = oPage.getId();
 			if (id.equals(pid)) {
-				lst.remove(oPage);		
+				lst.remove(oPage);
 				break;
 			}
 		}
+		oBookmk.setLstPage(lst);
+		repository.save(oBookmk);
 		return oBookmk;
 	}
 	

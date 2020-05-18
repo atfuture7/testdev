@@ -72,10 +72,10 @@ class BookmkController {
 	
 	@GetMapping(
 		value = "/bookmk/getFromBookmk",
-		params = "bk",
+		params = "bookmk",
 		produces = "application/json" )
 	@ResponseBody
-	List<Bookmk> getListbyBk(@RequestParam("Bookmk") String bk) {
+	List<Bookmk> getListbyBk(@RequestParam("bookmk") String bk) {
 		return repository.findByBookmarkLike(bk);
 	}
 	
@@ -95,18 +95,18 @@ class BookmkController {
 		value = "/bookmk/removePage/{id}",
 		params = "idx")
 	@ResponseBody
-	Bookmk appendUrlById(@PathVariable("id") String id, 
+	Bookmk removePage(@PathVariable("id") String id, 
 						@RequestParam("idx") int idx) {
 		return repository.removePage( id, idx);
 	}
 
 	// Remove page
 	@GetMapping(
-		value = "/bookmk/removePage/{id}",
+		value = "/bookmk/removePid/{id}",
 		params = "pid")
 	@ResponseBody
-	Bookmk appendUrlById(@PathVariable("id") String id, 
-						@RequestParam("pid") String pid) {
+	Bookmk removePage(@PathVariable("id") String id, 
+			@RequestParam("pid") String pid) {
 		return repository.removePage( id, pid);
 	}
 
