@@ -30,7 +30,7 @@ Bookmark service in REST <br/>
 <br/>    │   │ &emsp;&emsp;&emsp;&emsp;              ├── PageRepositoryImpl.java
 <br/>    │   │ &emsp;&emsp;&emsp;&emsp;              └── PageRepository.java
 <br/>    │   └── resources
-<br/>    │       └── application.properties
+<br/>    │    &emsp;   └── application.properties
 <br/>    └── test
 <br/>&emsp;        └── java
 <br/>&emsp;&emsp;            └── exp
