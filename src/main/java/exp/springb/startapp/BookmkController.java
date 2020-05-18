@@ -96,7 +96,8 @@ class BookmkController {
 		params = "idx")
 	@ResponseBody
 	Bookmk removePage(@PathVariable("id") String id, 
-						@RequestParam("idx") int idx) {
+			@RequestParam("idx") int idx) {
+		//int iIdx = Integer.parseInt(idx);
 		return repository.removePage( id, idx);
 	}
 
