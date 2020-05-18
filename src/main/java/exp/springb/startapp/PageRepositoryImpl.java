@@ -3,20 +3,17 @@ package exp.springb.startapp;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class PageRepositoryImpl implements PageRepositoryCustom {
-	
-	private final PageRepository repository;
-	
-	public PageRepositoryImpl( PageRepository repository) {
-		this.repository = repository;
-	}
 
+	@Autowired	
+	private PageRepository repository;
+	
 	@Override
-	public Oprional<Page> appendUrl(String id, String sUrl) {
-		Oprional<Page> op = repository.findById(pid)
-						.orElseThrow( ()-> new PageNotFoundException(id));
+	public Page appendUrl(String id, String sUrl) {
+		Optional<Page> op = repository.findById(id);
+		if (!op.isPresent()) return null;
 		Page oPage = op.get();
 		List<String> lst = oPage.getPageUrl();
 		if (lst == null) {
@@ -28,13 +25,14 @@ public class PageRepositoryImpl implements PageRepositoryCustom {
 		return oPage;
 	}
 	
-	public Oprional<Page> removeUrl(String id, int idx) {
-		Oprional<Page> op = repository.findById(pid)
-						.orElseThrow( ()-> new PageNotFoundException(id));
+	public Page removeUrl(String id, int idx) {
+		Optional<Page> op = repository.findById(id);
+		if (!op.isPresent()) return null;
 		Page oPage = op.get();
 		List<String> lst = oPage.getPageUrl();
-		if (lst != null) {
-			lst  = new ArrayList<String>();
+		if ((lst != null) && (idx >= 0) 
+			&& !lst.isEmpty()
+			&& (lst.size() >= (idx-1))) {
 			lst.remove(idx);		
 			oPage.setPageUrl(lst);
 			repository.save(oPage);

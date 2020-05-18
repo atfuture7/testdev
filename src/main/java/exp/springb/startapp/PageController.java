@@ -88,7 +88,7 @@ class PageController {
 		value = "/pageurl/appendUrl/{id}",
 		params = "sUrl")
 	@ResponseBody
-	Optional<Page> appendUrl(PathVariable("id") String id, 
+	Page appendUrl(@PathVariable("id") String id, 
 						@RequestParam("sUrl") String sUrl) {
 		return repository.appendUrl(id, sUrl);
 	}
@@ -98,7 +98,7 @@ class PageController {
 		value = "/pageurl/removeUrl/{id}",
 		params = "idx")
 	@ResponseBody
-	Optional<Page> appendUrl(PathVariable("id") String id, 
+	Page appendUrlById(@PathVariable("id") String id, 
 						@RequestParam("idx") int idx) {
 		return repository.removeUrl( id, idx);
 	}

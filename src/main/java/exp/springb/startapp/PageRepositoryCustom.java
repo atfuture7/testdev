@@ -4,6 +4,6 @@ import java.util.Optional;
 
 public interface PageRepositoryCustom {
 	Page appendUrl(String id, String sUrl);
-	Oprional<Page> removeUrl(String id, int idx);
+	Page removeUrl(String id, int idx);
 }
 
