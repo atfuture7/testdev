@@ -111,7 +111,7 @@ class PageController {
 	Page appendUrl(@RequestParam("idx") int idx) {
 		List<Page> lstPage = repository.findAll();
 		int total = lstPage.size();
-		int idx = idx % total;
+		idx = idx % total;
 		
 		return lstPage.get(idx);
 	}
