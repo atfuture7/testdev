@@ -1,10 +1,15 @@
+# Window shell of xlsxLoc tool
+
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QTextEdit
 from PyQt6.QtGui import QIcon, QFont
 from PyQt6.QtCore import Qt
 import sys
 from xlsxLoc import xlsxLoc
 
+# Window class
 class Window(QWidget):
+
+    # initialize, 2 labes, 2 text fields, 2 buttons, 1 textEdit
     def __init__(self):
         super().__init__()
         self.setWindowTitle("FindCell")
@@ -50,11 +55,12 @@ class Window(QWidget):
 
         self.oXlsxSearch = xlsxLoc()
 
-
+    # action of push Load button
     def doLoad(self):
         self.input2.setText(self.input.text())
         self.oXlsxSearch.loadFile(self.input.text())
 
+    # action of push Seek button
     def doSeek(self):
         self.oXlsxSearch.cellSearch(self.input1.text().strip())
         self.input2.setText(', '.join(self.oXlsxSearch.getResult()))
