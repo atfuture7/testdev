@@ -76,7 +76,8 @@ print(df.head())
 import pandas as pd
 import math
 import numpy as np 
-from sklearn import preprocessing, cross_validation, svm
+from sklearn import preprocessing, svm
+from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression 
 
 # set type for calaulation
@@ -120,12 +121,12 @@ df['label'] = df[forcast_col].shift(-forcast_out)
 
 df.dropna(inplace=True)
 
-X = np.array(df.drop(['label'], 1))
+X = np.array(df.drop( labels=['Date', 'label'], axis=1) )
 y = np.array(df['label'])
 X = preprocessing.scale(X)
 y = np.array(df['label'])
 
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 #clf = LinearRegression()
 
