@@ -121,15 +121,30 @@ df['label'] = df[forcast_col].shift(-forcast_out)
 
 df.dropna(inplace=True)
 
+# train by Linear
+
 X = np.array(df.drop( labels=['Date', 'label'], axis=1) )
 y = np.array(df['label'])
 X = preprocessing.scale(X)
-y = np.array(df['label'])
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
-#clf = LinearRegression()
+clf = LinearRegression()
+clf.fit(X_train, y_train)
+accuricy = clf.score(X_test, y_test)
 
+print( "by linear: " + str(accuricy) )
 
+# train by SVM
 
-print(X_train)
+clf = svm.SVR()
+clf.fit(X_train, y_train)
+accuricy = clf.score(X_test, y_test)
+print( "by SVM: " + str(accuricy) )
+
+# train by SVM
+
+clf = svm.SVR(kernel='poly')
+clf.fit(X_train, y_train)
+accuricy = clf.score(X_test, y_test)
+print( "by SVM-poly: " + str(accuricy) )
